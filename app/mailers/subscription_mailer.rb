@@ -1,7 +1,7 @@
 class SubscriptionMailer < ApplicationMailer
   def subscription_request_email
-    @recipient = indifferent_access_params[:recipient]
-    pending_subscribers = @recipient.pending_subscribers
+    @recipient = User.find(indifferent_access_params[:recipient_id])
+    pending_subscribers = @recipient.pending_subscribers.order(id: :desc)
     @pending_subscribers_total_count = pending_subscribers.count
     @pending_subscribers = pending_subscribers.limit(5)
     set_profile_pictures_attachments(@pending_subscribers)

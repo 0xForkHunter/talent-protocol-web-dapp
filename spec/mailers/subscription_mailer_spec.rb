@@ -4,7 +4,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
   let(:user) { create :user }
 
   describe "#subscription_request_email" do
-    let(:mail) { described_class.with(recipient: user).subscription_request_email }
+    let(:mail) { described_class.with(recipient_id: user.id).subscription_request_email }
 
     it "renders the header" do
       expect(mail.subject).to eql("You have new subscription requests")

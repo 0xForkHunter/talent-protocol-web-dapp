@@ -31,7 +31,9 @@ class SubscriptionRequestReceivedNotification < BaseNotification
   end
 
   def send_email?
-    unread? && !emailed? && recipient.pending_subscribers.any?
+    # disable sending email based on notifications
+    # unread? && !emailed? && recipient.pending_subscribers.any?
+    false
   end
 
   def url

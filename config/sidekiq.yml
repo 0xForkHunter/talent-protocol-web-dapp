@@ -54,3 +54,6 @@
     refresh_talent_mate_quests_job:
       cron: "0 14 * * *" # Runs once every day at 14:00
       class: Quests::RefreshTalentMateQuestsJob
+    send_subscription_reminder:
+      cron: "0 10 * * *" # Runs once every day at 10am
+      class: EmailReminders::SendSubscriptionRequestEmailJob

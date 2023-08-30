@@ -552,6 +552,12 @@ const VirtualPortfolio = ({ talent, railsContext }) => {
     return `$${value}`;
   };
 
+  const floatToDollar = balance => {
+    const value = parseAndCommify(balance.toFixed(2));
+
+    return `${value} $TAL`;
+  };
+
   const changeTab = selectedTab => {
     const url = new URL(window.location.href);
     window.history.replaceState({}, document.title, `${url.pathname}`);
@@ -641,7 +647,7 @@ const VirtualPortfolio = ({ talent, railsContext }) => {
             </BalanceCard>
             <BalanceCard
               title="Staked $TAL"
-              value={balanceToText(totalTALStaked)}
+              value={floatToDollar(totalTALStaked)}
               valueInDollars={balanceToDollar(totalTALStaked.toString())}
               theme={theme}
               primary={false}

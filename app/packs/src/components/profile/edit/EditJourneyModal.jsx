@@ -140,7 +140,7 @@ const MilestoneExperience = ({
     return years;
   })();
 
-  const CategoryOptions = ["Position", "Education", "Other"];
+  const CategoryOptions = ["Position", "Education"];
 
   useEffect(() => {
     if (startMonth != "" && startYear != "") {
@@ -200,20 +200,22 @@ const MilestoneExperience = ({
         )}
         <div className="w-100 mb-5">
           <TextInput
-            title="Title"
+            title={currentJourneyItem.category === "Education" ? "Degree" : "Title"}
             onChange={e => changeAttribute("title", e.target.value)}
             value={currentJourneyItem.title}
-            placeholder="Ex: Senior Product Designer"
+            placeholder={
+              currentJourneyItem.category === "Education" ? "Degree in Engineering" : "Senior Product Designer"
+            }
             required={true}
             error={validationErrors?.title}
           />
         </div>
         <div className="w-100 mb-5">
           <TextInput
-            title="Organization"
+            title={currentJourneyItem.category === "Education" ? "School" : "Organization"}
             onChange={e => changeAttribute("institution", e.target.value)}
             value={currentJourneyItem.institution}
-            placeholder="Ex: Talent Protocol"
+            placeholder={currentJourneyItem.category === "Education" ? "Stanford University" : "Talent Protocol"}
             required={true}
             error={validationErrors?.institution}
           />
@@ -234,7 +236,14 @@ const MilestoneExperience = ({
             checked={currentJourneyItem.inProgress}
             onChange={() => changeAttribute("in_progress", !currentJourneyItem.in_progress)}
           >
-            <P2 className="mr-1" text="I am currently working on this role" />
+            <P2
+              className="mr-1"
+              text={
+                currentJourneyItem.category === "Education"
+                  ? "I am currently studying here"
+                  : "I am currently working on this role"
+              }
+            />
           </Checkbox>
         </div>
         <div className="w-100 mb-5">
@@ -907,6 +916,7 @@ const EditJourneyModal = ({
       category: ""
     });
     setJourneyItem(null);
+    setCurrentStep(1);
     hide();
   };
 

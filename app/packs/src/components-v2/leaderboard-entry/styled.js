@@ -1,44 +1,41 @@
 import { buildColor } from "@talentprotocol/design-system";
 import styled, { css } from "styled-components";
 
-export const LeaderboardUserContainer = styled.a`
+export const LeaderboardUserContainer = styled.div`
   outline: none;
   text-decoration: none;
   padding: 16px 16px;
   color: ${buildColor("primary01")};
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid ${buildColor("surfaceHover02")};
+  align-items: center;
   gap: 16px;
   cursor: pointer;
-
-  &:hover {
-    background-color: ${buildColor("primaryTint02")};
-  }
+  background-color: ${({ isSelf }) => (isSelf ? buildColor("primaryTint02") : buildColor("bg01"))};
 `;
 
 export const LeftContent = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 8px;
 `;
 
 export const LeaderboardPosition = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   align-self: center;
-  ${({ position }) => css`
-    color: ${position <= 3 ? buildColor("bg01") : buildColor("primary01")};
-    border: ${position > 3 ? "1px solid " + buildColor("surfaceHover02") : "none"};
-    background-color: ${position === 1
-      ? buildColor("primary")
-      : position === 2 || position === 3
-      ? buildColor("primaryTint01")
-      : buildColor("bg01")};
-  `};
+  border: 1px solid ${buildColor("surfaceHover02")};
+  ${({ position }) => {
+    const isColored = position <= 3;
+    return css`
+      color: ${isColored ? buildColor("primary") : buildColor("primary01")};
+      background-color: ${isColored ? buildColor("primaryTint02") : "inherit"};
+      border-color: ${isColored ? buildColor("primary") : buildColor("surfaceHover02")};
+    `;
+  }};
 `;
 
 export const ExperienceTag = styled.div`
@@ -50,4 +47,5 @@ export const ExperienceTag = styled.div`
   border-radius: 4px;
   gap: 8px;
   white-space: nowrap;
+  color: ${buildColor("primary01")};
 `;

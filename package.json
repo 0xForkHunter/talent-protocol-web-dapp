@@ -82,6 +82,7 @@
     "@webpack-cli/serve": "^1.4.0",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.0.5",
+    "concurrently": "^8.2.1",
     "eslint": "^8.32.0",
     "eslint-plugin-react": "^7.32.2",
     "prettier": "2.3.2",
@@ -119,7 +120,8 @@
     "build-storybook": "build-storybook",
     "pretest": "yarn lint",
     "lint": "eslint ./app/packs --ext js,jsx",
-    "format": "prettier --loglevel warn --write \"**/*.{js,jsx,scss}\""
+    "format": "prettier --loglevel warn --write \"**/*.{js,jsx,scss}\"",
+    "dev": "concurrently --kill-others \"bundle exec rails s\" \"bin/webpacker-dev-server\""
   },
   "engines": {
     "node": "16.4.2"

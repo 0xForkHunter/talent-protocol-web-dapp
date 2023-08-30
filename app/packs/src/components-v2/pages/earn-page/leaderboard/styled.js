@@ -1,4 +1,4 @@
-import { desktopStyles } from "@talentprotocol/design-system";
+import { desktopStyles, buildColor } from "@talentprotocol/design-system";
 import styled, { css } from "styled-components";
 
 export const Container = styled.section`
@@ -21,4 +21,14 @@ export const Container = styled.section`
 export const UsersContainer = styled.div`
   display: flex;
   flex-direction: column;
+  & > * {
+    border-bottom: 1px solid ${buildColor("surfaceHover02")};
+  }
+`;
+
+export const BottomContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
 `;

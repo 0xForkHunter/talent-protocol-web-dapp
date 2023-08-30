@@ -1,21 +1,20 @@
 import { Avatar, Icon, Typography } from "@talentprotocol/design-system";
 import { ExperienceTag, LeaderboardPosition, LeaderboardUserContainer, LeftContent } from "./styled";
-import React, { useMemo } from "react";
+import React from "react";
 
-export const LeaderboardEntry = ({ position, entry }) => {
-  const profileUrl = useMemo(() => `/u/${entry.username}`, [entry]);
+export const LeaderboardEntry = ({ position, entry, profile }) => {
   return (
-    <LeaderboardUserContainer href={profileUrl}>
+    <LeaderboardUserContainer isSelf={entry?.id === profile?.id}>
       <LeftContent>
         <LeaderboardPosition position={position}>
           <Typography specs={{ variant: "p2", type: "medium" }}>{position}</Typography>
         </LeaderboardPosition>
         <Avatar
-          occupation={`5 streaks`}
+          occupation={entry.occupation || ""}
           name={entry.name}
           size="md"
           url={entry.profile_picture_url}
-          profileURL={profileUrl}
+          profileURL={`/u/${entry.username}`}
           isVerified={entry.verified}
         />
       </LeftContent>
